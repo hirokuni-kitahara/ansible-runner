@@ -273,6 +273,15 @@ def dump_artifacts(kwargs):
                 dump_artifact(str(kwargs[key]), path, key)
                 kwargs.pop(key)
 
+def get_execution_node_label():
+    labelfile = '/etc/receptor/execution_node_label'
+    try:
+        l = ''
+        with codecs.open(labelfile, 'r', encoding='utf-8') as f:
+            l = f.read()
+        return l
+    except FileNotFoundError:
+        return "default"
 
 def collect_new_events(event_path, old_events):
     '''
